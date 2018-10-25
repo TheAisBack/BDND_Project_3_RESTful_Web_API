@@ -1,0 +1,25 @@
+{
+  "name": "bdnd_project_2",
+  "version": "1.0.0",
+  "description": "BDND_project_2",
+  "main": "levelSandbox.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alan Hekle",
+  "license": "ISC",
+  "dependencies": {
+    "bitcoin-core": "^2.0.0",
+    "crypto-js": "^3.1.9-1",
+    "level": "^4.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheAisBack/BDND_Project_2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheAisBack/BDND_Project_2/issues"
+  },
+  "homepage": "https://github.com/TheAisBack/BDND_Project_2#readme"
+}
