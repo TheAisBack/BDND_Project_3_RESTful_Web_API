@@ -34,18 +34,9 @@ https://classroom.udacity.com/courses/ud803
 
 ## Lesson 01: Planning a Web Service
 
-#### Step 1
-- Clone the project repository in this Github repository
-#### Step 2
-- Open the terminal and install the packages: npm install
-#### Step 3
-- Open the file app.js and start coding - See additional info below
-#### Step 4
+- Install the packages: npm install
 - Run your application node app.js
-#### Step 5
 - Go to your browser and type: http://localhost:8080/
-#### Step 6
-- Get the hash generated in your browser and answer the quiz in your classroom
 
 #### Client-Server Features
 ```
@@ -67,10 +58,13 @@ blocks.push(block_1);
 blocks.push(block_2);
 
 //Step 2. Configure web service
+
 /**
 * Take the block_2 data from the array "blocks" and generate the hash to be written into the response.
 */
+
 //Add your code here
+
 const app = http.createServer(function (request, response){
     response.writeHead(200, {"Content-Type": "application/json"});
     let block = blocks[1];
@@ -81,6 +75,7 @@ const app = http.createServer(function (request, response){
 
 // Notify console
 console.log("Web Server started on port 8080\nhttp://localhost:"+port);
+
 // Start server with http port
 app.listen(port);
 ```
@@ -254,7 +249,7 @@ let blockchain = new Blockchain();
 5: Generate 10 blocks using a for loop
 ```
 for (var i = 0; i <= 10; i++) {
-blockchain.addBlock(new Block("test data "+i));
+    blockchain.addBlock(new Block("test data "+i));
 }
 ```
 6: Validate blockchain
@@ -264,8 +259,9 @@ blockchain.validateChain();
 7: Induce errors by changing block data
 ```
 let inducedErrorBlocks = [2,4,7];
+
 for (var i = 0; i < inducedErrorBlocks.length; i++) {
-blockchain.chain[inducedErrorBlocks[i]].data='induced chain error';
+    blockchain.chain[inducedErrorBlocks[i]].data='induced chain error';
 }
 ```
 8: Validate blockchain. The chain should now fail with blocks 2,4, and 7.
