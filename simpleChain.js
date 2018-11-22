@@ -190,5 +190,3 @@ class Blockchain {
 		if (--i) theLoop(i);
 	}, 100);
 })(10);
-
-module.exports.Blockchain = Blockchain
