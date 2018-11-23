@@ -3,13 +3,9 @@ const express = require("express");
 //	Importing BodyParser.js module
 const bodyParser = require("body-parser");
 
-/**
-	*	Class Definition for the REST API
-	*/
-class BlockAPI {
-	/**
-		*	Constructor that allows initialize the class 
-		*/
+//	Class Definition for the REST API
+class BlockChainAPI {
+	//	Constructor that allows initialize the class
 	constructor() {
 		this.app = express();
 		this.initExpress();
@@ -17,38 +13,25 @@ class BlockAPI {
 		this.initControllers();
 		this.start();
 	}
-
-	/**
-		*	Initilization of the Express framework
-		*/
+	//	Initilization of the Express framework
 	initExpress() {
-		this.app.set("port", 8100);
+		this.app.set("port", 8000);
 	}
-
-	/**
-		*	Initialization of the middleware modules
-		*/
+	//	Initialization of the middleware modules
 	initExpressMiddleWare() {
 		this.app.use(bodyParser.urlencoded({extended:true}));
 		this.app.use(bodyParser.json());
 	}
-
-	/**
-		*	Initilization of all the controllers
-		*/
+	//	Initilization of all the controllers
 	initControllers() {
 		require("./BlockController.js")(this.app);
 	}
-
-	/**
-		*	Starting the REST Api application
-		*/
+	//	Starting the REST Api application
 	start() {
 		let self = this;
-		this.app.listen(this.app.get("port"), () => {
-			console.log(`Server Listening for port: ${self.app.get("port")}`);
+		this.app.listen(this.app.get("port"), () => {console.log(`Server Listening for port: ${self.app.get("port")}`);
 		});
 	}
 }
 
-new BlockAPI();
+new BlockChainAPI();

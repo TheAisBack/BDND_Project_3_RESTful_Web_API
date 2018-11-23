@@ -2,11 +2,13 @@
 
 ## Getting Started
 
+In this project we are creating a RESTful web API to connect with our blockchain Node.js Framework
+
 ### Requirements
 
+- Node.js
 - Postman
 - Express.js
-- Server
 
 ### Installments
 
@@ -21,7 +23,9 @@ node app.js
 
 // GET
 
-The web API contains a GET endpoint that responds to a request using a URL path with a block height parameter or properly handles an error if the height parameter is out of bounds.
+The web API contains a GET endpoint that responds to a request using a URL
+path with a block height parameter or properly handles an error if the height
+parameter is out of bounds.
 
 The response for the endpoint provides a block object in JSON format.
 

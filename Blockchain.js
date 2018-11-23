@@ -1,20 +1,26 @@
-/*==========================	SHA256 with Crypto-js	==========================|
-|						Learn more: Crypto-js: https://github.com/brix/crypto-js					|
-|============================================================================*/
+/*==========================	SHA256 with Crypto-js	============================|
+|						Learn more: Crypto-js: https://github.com/brix/crypto-js						|
+|==============================================================================*/
 
 const SHA256 = require('crypto-js/sha256');
 
-/*========================	Persist data with LevelDB	========================|
-|							 Learn more: level: https://github.com/Level/level							|
-|============================================================================*/
+/*==========================	Adding Block.js	==================================|
+|										Class with a constructor for block													|
+|==============================================================================*/
+
+const Block = require('./Block.js');
+
+/*========================	Persist data with LevelDB	==========================|
+|							 Learn more: level: https://github.com/Level/level								|
+|==============================================================================*/
 
 const level = require('level');
 const chainDB = './chaindata';
 const db = level(chainDB);
 
-/*=============================	Functions	====================================|
-|														List of Functions																	|
-|============================================================================*/
+/*==============================	Functions	====================================|
+|															List of Functions																	|
+|==============================================================================*/
 
 //	Add data to levelDB with key/value pair
 function addLevelDBData(key, value) {
@@ -50,23 +56,9 @@ function addDataToLevelDB(value) {
 	});
 }
 
-/*================================	Block Class	==============================|
-|												Class with a constructor for block										|
-|============================================================================*/
-
-class Block {
-	constructor(data) {
-		this.hash = "",
-		this.height = 0,
-		this.body = data,
-		this.time = 0,
-		this.previousBlockHash = ""
-	}
-}
-
-/*=============================	Blockchain Class	============================|
-|									 Class with a constructor for new blockchain 				 				|
-|============================================================================*/
+/*=============================	Blockchain Class	==============================|
+|									 Class with a constructor for new blockchain 				 					|
+|==============================================================================*/
 
 class Blockchain {
 	constructor() {
@@ -173,16 +165,16 @@ class Blockchain {
 	}
 }
 
-/*=================================	Testing	==================================|
-|	-	Self-invoking function to add blocks to chain															|
-|	-	Learn more:																																|
-|		https://scottiestech.info/2014/07/01/javascript-fun-looping-with-a-delay/	|
-|																																							|
-|	*	100 Milliseconds loop = 36,000 blocks per hour														|
-|			(`13.89 hours for 500,000 blocks )																			|
-|	Bitcoin blockchain adds 8640 blocks per day																	|
-|			(	new block every 10 minutes )																					|
-|============================================================================*/
+/*=================================	Testing	====================================|
+|	-	Self-invoking function to add blocks to chain																|
+|	-	Learn more:																																	|
+|		https://scottiestech.info/2014/07/01/javascript-fun-looping-with-a-delay/		|
+|																																								|
+|	*	100 Milliseconds loop = 36,000 blocks per hour															|
+|			(`13.89 hours for 500,000 blocks )																				|
+|	Bitcoin blockchain adds 8640 blocks per day																		|
+|			(	new block every 10 minutes )																						|
+|==============================================================================*/
 
 (function theLoop (i) {
 	setTimeout(function () {
