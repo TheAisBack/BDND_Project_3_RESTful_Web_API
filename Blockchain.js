@@ -47,13 +47,15 @@ class Block {
 |==============================================================================*/
 class Blockchain {
 	constructor() {
-		let height = this.getBlockHeight();
+		/*let height = this.getBlockHeight();*/
 		//	Created an if statement to find out if there is a genesis block. 
-		if (height < 0) {
+		/*if (height < 0) {
 			this.addBlock(new Block("First block in the chain - Genesis block"));
 		} else {
 			console.log("Error, height is above the requirement")
-		}
+		}*/
+		this.height = -1;
+		this.previousBlockHash = "";
 	}
 	//	Add new block
 	//	addBlock(newBlock) includes a method to store newBlock within LevelDB
@@ -148,52 +150,41 @@ class Blockchain {
 	}
 }
 
-const express = require('express')
-var bodyParser = require('body-parser')
-
-const app = express()
-const port = 8000
+const express = require('express');
+const bodyParser = require('body-parser');
+const blockchain = new Blockchain();
+const app = express();
+app.listen(8000, () => console.log('API listening on port 8000'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//	Get block endpoint
-app.get('/block/:blockheight', (req, res) => {
-	let blockchain = new simpleChain.Blockchain();
-	let blockheight = req.params.blockheight
-	//	console.log("Blockheight requested is", blockheight)
-	blockchain.getBlock(blockheight)
-		.then(block => {
-			res.send(block)
-		}, err => {
-			res.send({
-				status: 'Error',
-				message: 'Block not found'
-			})
-		})
-})
-//	Post block endpoint
-app.post('/block', (req, res) => {
-	let blockchain = new simpleChain.Blockchain();
-	let blockData = req.body
-	//	console.log(blockData)
-	if(blockData.body.length > 0) {
-		//	console.log("block data is", blockData)
-		let newBlock = new simpleChain.Block(blockData.body)
-		blockchain.addBlock(newBlock)
-			.then(block => {
-				res.send(block)
-			}, err => {
-				res.send({
-					status: 'Error',
-					message: err
-				})
-			})
-		} else {
-			res.send({
-				status: 'Error',
-				message: 'Block data is missing'
-			})
-		}
-})
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+//  Get block endpoint
+app.get('/block/:height', async (req, res) => {
+  var height = req.params.height;
+  blockchain.getBlock(height, (block) => {
+    res.send(block);
+  }, (err) => {
+    res.send(err);
+  });
+});
+
+//  Post block endpoint
+app.post('/block', async (req, res) => {
+  let block = req.body;
+  if(block.body === null || block.body === undefined) {
+    res.send({
+      status:   'Error',
+      message:  'Block data is missing'
+    })
+  } else {
+    await chain.addBlock(new Block(req.body.body));
+    const height = await chain.getBlockHeight();
+    const response = await chain.getBlock(height);
+    res.send(response);
+  }
+});
+
+
+
+
