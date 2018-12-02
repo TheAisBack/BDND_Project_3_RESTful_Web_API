@@ -51,6 +51,8 @@ class Blockchain {
 		//	Created an if statement to find out if there is a genesis block. 
 		if (height < 0) {
 			this.addBlock(new Block("First block in the chain - Genesis block"));
+		} else {
+			console.log("Error, height is above the requirement")
 		}
 	}
 	//	Add new block
@@ -165,8 +167,8 @@ app.get('/block/:blockheight', (req, res) => {
 			res.send(block)
 		}, err => {
 			res.send({
-				status: 'error',
-				message: 'block not found'
+				status: 'Error',
+				message: 'Block not found'
 			})
 		})
 })
@@ -183,14 +185,14 @@ app.post('/block', (req, res) => {
 				res.send(block)
 			}, err => {
 				res.send({
-					status: 'error',
+					status: 'Error',
 					message: err
 				})
 			})
 		} else {
 			res.send({
-				status: 'error',
-				message: 'block data is missing'
+				status: 'Error',
+				message: 'Block data is missing'
 			})
 		}
 })
