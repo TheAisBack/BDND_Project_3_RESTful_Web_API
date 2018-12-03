@@ -11,16 +11,25 @@ app.use(bodyParser.json());
 
 //	Get block endpoint
 app.get('/block/:height', async (req, res) => {
-	const { height } = req.params;
-	const block = await chain.getBlock(height);
-	console.log(block);
-	return res.json(block);
+	try {
+		const { height } = req.params;
+		const block = await chain.getBlock(height);
+		console.log(block);
+		return res.send(JSON.parse(block))
+	} catch(error) {
+		res.status(404).json({
+			"message": "Error no block found"
+		})
+	}
 });
 
 app.post('/block', async (req, res) => {
-	const block = new Blocky(req.body);
-	await chain.addBlock(block);
-	return res.sendStatus(200);
+	if(req.body.body) {
+		const block = await chain.addBlock(new Blocky(req.body.body));
+		res.send(block);
+	} else {
+		res.status(404).send('No Data!');
+	}
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
