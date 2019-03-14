@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Blockchain = require('./simpleChain');
-const Blocky = require('./block')
+const Block = require('./block')
 const app = express();
 const chain = new Blockchain();
 const port = 8000;
@@ -28,7 +28,7 @@ app.post("/block", (req, res) => {
 		res.status(400).send("Pass data to the block");
 	} else {
 		let addNewBlock = new Block.Block(req.body.body);
-		myBlockChain.addBlock(addNewBlock).then(result => {
+		chain.addBlock(addNewBlock).then(result => {
 			res.status(200).send(result);
 		}).catch(err => {
 			res.status(400).send(err);
