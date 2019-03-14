@@ -23,12 +23,16 @@ app.get('/block/:height', async (req, res) => {
 	}
 });
 
-app.post('/block', async (req, res) => {
-	if(req.body.body) {
-		const block = await chain.addBlock(new Blocky(req.body.body));
-		res.send(block);
+app.post("/block", (req, res) => {
+	if (req.body.body === "" || req.body.body === undefined) {
+		res.status(400).send("Pass data to the block");
 	} else {
-		res.status(404).send('No Data!');
+		let addNewBlock = new Block.Block(req.body.body);
+		myBlockChain.addBlock(addNewBlock).then(result => {
+			res.status(200).send(result);
+		}).catch(err => {
+			res.status(400).send(err);
+		});
 	}
 });
 
