@@ -27,7 +27,7 @@ app.post("/block", (req, res) => {
 	if (req.body.body === "" || req.body.body === undefined) {
 		res.status(400).send("Pass data to the block");
 	} else {
-		let addNewBlock = new Block.Block(req.body.body);
+		let addNewBlock = new Block(req.body.body);
 		chain.addBlock(addNewBlock).then(result => {
 			res.status(200).send(result);
 		}).catch(err => {

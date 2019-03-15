@@ -42,21 +42,24 @@ class Blockchain {
 		//	Adding block object to chain
 		this.chain.push(newBlock);
 		await level.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
-		await level.addLevelDBData('height', newBlock.height);
+		return level.addLevelDBData('height', newBlock.height);
 	}
 
-	//	Modify getBlockHeight() function to retrieve current block height within the LevelDB chain
+	//	Modify getBlockHeight() function to retrieve current block height
+	//	within the LevelDB chain
 	async getBlockHeight() {
 		return level.getLevelDBData('height');
 	}
 
-	//	Modify getBlock() function to retrieve a block by its block height within the LevelDB chain
+	//	Modify getBlock() function to retrieve a block by its block height
+	//	within the LevelDB chain
 	async getBlock(blockHeight) {
 		return level.getLevelDBData(blockHeight);
 	}
 
 	//	Validate block
-	//	Modify the validateBlock() function to validate a block stored within levelDB
+	//	Modify the validateBlock() function to validate a block stored within
+	//	levelDB
 	async validateBlock(blockHeight) {
 		//	Getting a Promise returned - Help From Udacity Knowledge
 		//	get the value of the block object
@@ -77,7 +80,8 @@ class Blockchain {
 	}
 
 	//	Validate blockchain
-	//	Modify validateChain() function to validate blockchain stored within levelDB
+	//	Modify validateChain() function to validate blockchain stored within
+	//	levelDB
 	async validateChain() {
 		let errorLog = [];
 		for (var i = 0; i < this.chain.length-1; i++) {
