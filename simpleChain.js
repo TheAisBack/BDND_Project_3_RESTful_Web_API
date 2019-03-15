@@ -42,7 +42,9 @@ class Blockchain {
 		//	Adding block object to chain
 		this.chain.push(newBlock);
 		await level.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
-		return level.addLevelDBData('height', newBlock.height);
+		await level.addLevelDBData('height', newBlock.height);
+
+		return newBlock;
 	}
 
 	//	Modify getBlockHeight() function to retrieve current block height
