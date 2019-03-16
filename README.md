@@ -20,8 +20,8 @@ npm install crypto-js --save
 npm install level --save
 npm install express --save
 node app.js
-
-// GET
+```
+### GET
 
 The web API contains a GET endpoint that responds to a request using a URL
 path with a block height parameter or properly handles an error if the height
@@ -29,10 +29,11 @@ parameter is out of bounds.
 
 The response for the endpoint provides a block object in JSON format.
 
-URL: [http://localhost:8000/block/0](http://localhost:8000/block/0)
+URL:
+http://localhost:8000/block/0
 
 Response:
-
+```
 {
     "hash":"49cce61ec3e6ae664514d5fa5722d86069cf981318fc303750ce66032d0acff3",
     "height":0,
@@ -40,22 +41,25 @@ Response:
     "time":"1530311457",
     "previousBlockHash":""
 }
-
-// POST
+```
+### POST
 
 The web API contains a POST endpoint that allows posting a new block with
 the data payload option to add data to the block body. Block body should
 support a string of text.
 
-URL: [http://localhost:8000/block](http://localhost:8000/block)
-
+URL:
+http://localhost:8000/block
+```
 {
     "body": "Testing block with test string data"
 }
+```
 The response for the endpoint is a block object in JSON format.
 
-open browser and type [http://localhost:8080](http://localhost:8080)
-```
+open browser and type
+http://localhost:8080
+
 
 ## Lesson 03: Utilizing Third-Party Libraries
 
