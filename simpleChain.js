@@ -33,17 +33,16 @@ class Blockchain {
 		newBlock.height = this.chain.length;
 		//	UTC timestamp
 		newBlock.time = new Date().getTime().toString().slice(0,-3);
-		//	previous block hash
+		//	Previous block hash
 		if(this.chain.length>0){
-			newBlock.previousBlockHash = this.chain[this.chain.length-1].hash;
+		  newBlock.previousBlockHash = this.chain[this.chain.length-1].hash;
 		}
 		//	Block hash with SHA256 using newBlock and converting to a string
 		newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
 		//	Adding block object to chain
 		this.chain.push(newBlock);
-		return await level.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
-		//await level.addLevelDBData('height', newBlock.height);
-		//return newBlock;
+		await level.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
+		return JSON.stringify(newBlock);
 	}
 
 	//	Modify getBlockHeight() function to retrieve current block height
