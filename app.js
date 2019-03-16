@@ -25,13 +25,13 @@ app.get('/block/:height', async (req, res) => {
 
 app.post("/block", (req, res) => {
 	if (req.body.body === "" || req.body.body === undefined) {
-		res.status(400).send("Pass data to the block");
+		return res.status(400).send("Pass data to the block");
 	} else {
 		let addNewBlock = new Block(req.body.body);
 		chain.addBlock(addNewBlock).then(result => {
-			res.status(200).send(result);
+			return res.status(200).send(result);
 		}).catch(err => {
-			res.status(400).send(err);
+			return res.status(400).send(err);
 		});
 	}
 });
