@@ -34,14 +34,14 @@ class Blockchain {
 		//	UTC timestamp
 		newBlock.time = new Date().getTime().toString().slice(0,-3);
 		//	Previous block hash
-		if(this.chain.length>0){
+		if (this.chain.length>0) {
 		  newBlock.previousBlockHash = this.chain[this.chain.length-1].hash;
 		}
 		//	Block hash with SHA256 using newBlock and converting to a string
 		newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
 		//	Adding block object to chain
 		this.chain.push(newBlock);
-		await level.addLevelDBData(newBlock.height, JSON.stringify(newBlock))
+		await level.addLevelDBData(newBlock.height, JSON.stringify(newBlock));
 		return JSON.stringify(newBlock);
 	}
 
