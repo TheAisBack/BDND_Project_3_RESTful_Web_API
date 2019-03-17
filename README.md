@@ -58,7 +58,7 @@ http://localhost:8000/block
 The response for the endpoint is a block object in JSON format.
 
 <p align="center">
-    <img src="https://github.com/TheAisBack/BDND_Project_3_RESTful_Web_API/Post_image.png">
+    <img src="https://github.com/TheAisBack/BDND_Project_3_RESTful_Web_API/blob/master/Post_image.png">
 </p>
 
 open browser and type
