@@ -23,13 +23,11 @@ app.get('/block/:height', async (req, res) => {
 	}
 });
 
-//	req.params.body
-
 app.post("/block", (req, res) => {
-	if (req.params.body === "" || req.params.body === undefined) {
+	if (req.body.body === "" || req.body.body === undefined) {
 		return res.status(400).send("Pass data to the block");
 	} else {
-		let addNewBlock = new Block(req.params.body);
+		let addNewBlock = new Block(req.body.body);
 		chain.addBlock(addNewBlock).then(result => {
 			return res.status(200).send(result);
 		}).catch(err => {

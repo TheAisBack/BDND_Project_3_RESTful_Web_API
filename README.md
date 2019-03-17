@@ -57,9 +57,12 @@ http://localhost:8000/block
 ```
 The response for the endpoint is a block object in JSON format.
 
+<p align="center">
+    <img src="https://github.com/TheAisBack/BDND_Project_3_RESTful_Web_API/Post_image.png">
+</p>
+
 open browser and type
 http://localhost:8080
-
 
 ## Lesson 03: Utilizing Third-Party Libraries
 
